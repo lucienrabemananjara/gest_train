@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Itineraire{% endblock %}
+
+{% block body %}
+    <h1>Liste Itineraire</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero Itinéraire</th>
+                <th>Ville Départ</th>
+                <th>Ville Arrivée</th>
+                <th>Frais</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for itineraire in itineraires %}
+            <tr>
+                <td>{{ itineraire.id }}</td>
+                <td>{{ itineraire.numItineraire }}</td>
+                <td>{{ itineraire.villeDepart }}</td>
+                <td>{{ itineraire.villeArrivee }}</td>
+                <td>{{ itineraire.frais }}</td>
+                <td>
+                    <a href="{{ path('app_itineraire_show', {'id': itineraire.id}) }}" class="btn btn-primary">show</a>
+                    <a href="{{ path('app_itineraire_edit', {'id': itineraire.id}) }}" class="btn btn-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_itineraire_new') }}" class="btn btn-primary">Create new</a>
+{% endblock %}

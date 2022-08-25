@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+    <h1>Liste Reservation</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numéro Résérvation</th>
+                <th>Numéro Train</th>
+                <th>Numéro Place</th>
+                <th>Nom Voyageur</th>
+                <th>Date Résérvation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.numReservation }}</td>
+                <td>{{ reservation.trains.numTrain }}</td>
+                <td>{{ reservation.places.numPlace }}</td>
+                <td>{{ reservation.nomVoyageur }}</td>
+                <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}" class="btn btn-primary">show</a>
+                    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}" class="btn btn-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservation_new') }}" class="btn btn-primary">Create</a>
+{% endblock %}

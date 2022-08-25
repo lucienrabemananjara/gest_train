@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Train{% endblock %}
+
+{% block body %}
+    <h1> Liste Train </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NumTrain</th>
+                <th>DesignTrain</th>
+                <th>NbrPlace</th>
+                <th>NumItineraire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for train in trains %}
+            <tr>
+                <td>{{ train.id }}</td>
+                <td>{{ train.numTrain }}</td>
+                <td>{{ train.designTrain }}</td>
+                <td>{{ train.nbrPlace }}</td>
+                <td>{{ train.itineraires.numItineraire}}</td>
+                <td>
+                    <a href="{{ path('app_train_show', {'id': train.id}) }}" class="btn btn-primary">show</a>
+                    <a href="{{ path('app_train_edit', {'id': train.id}) }}" class="btn btn-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_train_new') }}" class="btn btn-primary">Create</a>
+{% endblock %}

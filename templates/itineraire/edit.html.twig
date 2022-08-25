@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Itineraire{% endblock %}
+
+{% block body %}
+    <h1>Edit Itineraire</h1>
+
+    {{ include('itineraire/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_itineraire_index') }}">back to list</a>
+
+    {{ include('itineraire/_delete_form.html.twig') }}
+{% endblock %}

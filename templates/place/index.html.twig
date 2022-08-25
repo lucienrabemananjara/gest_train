@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Place{% endblock %}
+
+{% block body %}
+    <h1>Liste Place</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numéro Place</th>
+                <th>Numéro Train</th>
+                <th>Occupation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for place in places %}
+            <tr>
+                <td>{{ place.id }}</td>
+                <td>{{ place.numPlace }}</td>
+                <td>{{ place.trains.numTrain }}</td>
+                <td>{{ place.occupation ? 'Disponible' : 'Occupper' }}</td>
+                <td>
+                    <a href="{{ path('app_place_show', {'id': place.id}) }}" class="btn btn-primary">show</a>
+                    <a href="{{ path('app_place_edit', {'id': place.id}) }}" class="btn btn-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_place_new') }}" class="btn btn-primary">Create</a>
+{% endblock %}
